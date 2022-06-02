@@ -1,141 +1,31 @@
-<!DOCTYPE html>
-<head>
-    <title>Source Code Vulnerability</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+{% extends 'base.html' %} {% block content %}
+<form action="/upload" method="POST" enctype="multipart/form-data">
+  <div class="ui text container">
+    <h1 class="ui inverted header">Vulnerability Checker</h1>
+    <h2>
+      Source Code Vulnerability Detection and Prevention using Deep Learning and
+      Blockchain
+    </h2>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
-crossorigin="anonymous"
-referrerpolicy="no-referrer"
-/>
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
-integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
-crossorigin="anonymous"
-referrerpolicy="no-referrer"
-></script>
-
-<link rel="stylesheet" href="style.css">
-<script>
-$(document).ready(function () {
-  // fix menu when passed
-  $(".masthead").visibility({
-    once: false,
-    onBottomPassed: function () {
-      $(".fixed.menu").transition("fade in");
-    },
-    onBottomPassedReverse: function () {
-      $(".fixed.menu").transition("fade out");
-    },
-  });
-
-  // create sidebar and attach to menu open
-  $(".ui.sidebar").sidebar("attach events", ".toc.item");
-});
-</script>
-</head>
-<body>
-  <div class="ui large top fixed hidden menu">
-    <div class="ui container">
-      <a class="active item">Home</a>
-      <a class="item">Work</a>
-      <a class="item">Company</a>
-      <a class="item">Careers</a>
-      <div class="right menu">
-        <div class="item">
-          <a class="ui button">Log in</a>
-        </div>
-        <div class="item">
-          <a class="ui primary button">Sign Up</a>
-        </div>
-      </div>
+    <div class="ui inverted header">
+      <label for="textname"><h3>Developer ID:</h3></label>
+      <input type="text" name="textname" />
+      <br /><br />
     </div>
-  </div>
+    <br />
 
-<!-- Sidebar Menu -->
-<div class="ui vertical inverted sidebar menu">
-  <a class="active item">Home</a>
-  <a class="item">Work</a>
-  <a class="item">Company</a>
-  <a class="item">Careers</a>
-  <a class="item">Login</a>
-  <a class="item">Signup</a>
-</div>
-
-<!-- Page Contents -->
-<div class="pusher">
-  <div class="ui inverted vertical masthead center aligned segment">
-    <div class="ui container">
-      <div class="ui large secondary inverted pointing menu">
-        <a class="toc item">
-          <i class="sidebar icon"></i>
-        </a>
-        <a class="active item" href="">Home</a>
-        <a class="item">About the project</a>
-        <a class="item" href="" target="_blank">Data Source</a>
-      </div>
+    <div class="ui input focus">
+      <input type="file" name="file" />
     </div>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <div class="ui text container">
-        <h1 class="ui inverted header">Vulnerability Checker</h1>
-        <h2>
-          Source Code Vulnerability Detection and Prevention using Deep Learning and
-          Blockchain
-        </h2>
-        <div class="ui input focus">
-          <input type="file" name="file" />
-        </div>
-    
-        <button
-          class="ui primary button"
-          type="submit"
-          onclick="this.classList.add('loading')"
-        >
-          Check Source Code<i class="up arrow icon ml3"></i>
-        </button>
-      </div>
-    </form>
+
+    <button
+      class="ui primary button"
+      type="submit"
+      onclick="this.classList.add('loading')"
+    >
+      Check Source Code<i class="up arrow icon ml3"></i>
+    </button>
   </div>
-  <!-- footer -->
-  <div class="ui inverted vertical footer segment">
-    <div class="ui container">
-      <!-- <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">About</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
-            <a href="#" class="item">How To Access</a>
-            <a href="#" class="item">Favorite X-Men</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>
-            Extra space for a call to action inside the footer that could help
-            re-engage users.
-          </p>
-        </div>
-      </div> -->
-    </div>
-  </div>
-</div>      
+</form>
 
-
-
-    <script type="module" src="index.js"></script>
-</body>
-</html>
+{% endblock %}

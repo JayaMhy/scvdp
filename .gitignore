@@ -104,3 +104,9 @@ dist
 .tern-port
 
 client/.parcel-cache/
+
+__pycache__/
+
+uploads/
+
+flask_uploads/

@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="ui text container">
+  {% if result.is_vulnerable %}
+  <h1>File is Vulnerable</h1>
+  {% else %}
+  <h1>File is Safe</h1>
+  {% endif%} {% if result.is_vulnerable %}
+  <img src="/images/vulnerable-dark.gif" alt="" style="width: 50%" />
+  {% else %}
+  <img src="/images/safe-dark.gif" alt="" style="width: 50%" />
+  {% endif%}
+
+  <!-- <h2 class="ui inverted header">Vulnerability Score</h2>
+  <h2>{{result.vul_score}}%</h2> -->
+  <h2 class="ui inverted header">Non-Vulnerability Score</h2>
+  <h2>{{result.nonvulnerable_score}}%</h2>
+
+  <h2 class="ui inverted header">Developer ID</h2>
+  <h2>{{result.developer_id}}</h2>
+
+  <a class="ui primary button" href="/">
+    Check Another <i class="ml-5 left arrow icon"></i>
+  </a>
+</div>
+{% endblock %}
