@@ -110,3 +110,5 @@ __pycache__/
 uploads/
 
 flask_uploads/
+
+.parcel-cache

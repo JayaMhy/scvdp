@@ -7,9 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js ",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "blockchain": "parcel client/blockchainadmin.html",
+    "build": "parcel build client/blockchainadmin.html"
   },
   "repository": {
     "type": "git",
@@ -17,13 +19,23 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "events": "^3.3.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "parcel": "^2.6.0",
+    "querystring-es3": "^0.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0",
+    "nodemon": "^2.0.16"
+  },
   "dependencies": {
     "axios": "^0.27.2",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.16",
-    "nunjucks": "^3.2.3",
-    "web3": "^1.7.3"
+    "nunjucks": "^3.2.3"
   }
 }

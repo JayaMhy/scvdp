@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %} Project {% endblock%}</title>
+    {% include "includes/head.html" %}
+  </head>
+
+  {{ user}}
+  <body>
+    {% include "includes/navbar.html" %}
+
+    <div
+      class="jumbotron jumbotron-fluid bg-dark text-white h-100 d-flex align-items-center justify-content-center text-center"
+    >
+      <div class="container">
+        <!-- Page Contents -->
+            {% block content %} {% endblock %}
+        </div>
+      </div>
+    </div>
+    {% include "includes/footer.html" %}
+
+    <script src="/web3/dist/web3.min.js"></script>
+    <script src="/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    {% block footer %} {% endblock %}
+  </body>
+</html>

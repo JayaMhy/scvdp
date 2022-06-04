@@ -4,6 +4,7 @@
 // import { Web3 } from "web3";
 
 import configuration from "../contracts/Blockchain.json" assert { type: "json" };
+// assert { type: "json" };
 // console.log(Web3.version);
 
 // console.log(configuration);
@@ -27,9 +28,8 @@ const devDOJField = document.getElementById("dev4");
 // console.log(btnAddDev);
 
 const main = async () => {
-  const accounts = await web3.eth.requestAccounts();
-  console.log(accounts);
-  const account = accounts[0];
+  const [account] = await web3.eth.requestAccounts();
+  console.log("DEVELOPER ADDRESS", account);
 };
 
 main();
