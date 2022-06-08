@@ -1,13 +1,21 @@
 const USERS = {
-  111111: {
-    name: "Вася",
+  123123: {
+    name: "Jaya",
     password: "123",
     admin: true,
+    lead: false,
   },
-  123123: {
-    name: "Петя",
+  456456: {
+    name: "Maya",
     password: "123",
     admin: false,
+    leadDeveloper: false,
+  },
+  890890: {
+    name: "lead",
+    password: "123",
+    admin: false,
+    lead: true,
   },
 };
 

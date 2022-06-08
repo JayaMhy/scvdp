@@ -43,8 +43,13 @@ contract Blockchain {
     }
     struct mlResult {
         string result;
-        string ptimestamp;
         string vulscore;
+        string nonvulscore;
+        string filename;
+        string ptimestamp;
+        string utimestamp;
+        string filepath;
+        string accepted; // false
     }
     struct toIPFS {
         uint256 developer_id;
@@ -71,7 +76,7 @@ contract Blockchain {
     struct toBlockchain {
         uint256 leaddeveloper_id;
         uint256 developer_id;
-        string code;
+        string sourcecode;
         string utimestamp;
         string result;
         string ptimestamp;
@@ -252,13 +257,21 @@ contract Blockchain {
     function workMlResult(
         uint256 _blockchainadmin_address,
         string memory result,
+        string memory vulscore,
+        string memory nonvulscore,
+        string memory filename,
         string memory ptimestamp,
-        string memory vulscore
+        string memory utimestamp,
+        string memory filepath
     ) public {
         mlResults[_blockchainadmin_address] = mlResult(
             result,
+            vulscore,
+            nonvulscore,
+            filename,
             ptimestamp,
-            vulscore
+            utimestamp,
+            filepath
         );
     }
 
@@ -280,7 +293,7 @@ contract Blockchain {
     function sendResultIPFS(
         uint256 _leaddeveloper_address,
         uint256 developer_id,
-        string memory code,
+        string memory sourcecode,
         string memory utimestamp,
         string memory result,
         string memory ptimestamp,
@@ -290,7 +303,7 @@ contract Blockchain {
     ) public {
         toIPFSs[_leaddeveloper_address] = toIPFS(
             developer_id,
-            code,
+            sourcecode,
             utimestamp,
             result,
             ptimestamp,
@@ -332,7 +345,7 @@ contract Blockchain {
     function fileHashGen(
         uint256 _leaddeveloper_address,
         uint256 developer_id,
-        string memory code,
+        string memory sourcecode,
         string memory utimestamp,
         string memory result,
         string memory ptimestamp,
@@ -344,7 +357,7 @@ contract Blockchain {
     ) public {
         fromIPFSs[_leaddeveloper_address] = fromIPFS(
             developer_id,
-            code,
+            sourcecode,
             utimestamp,
             result,
             ptimestamp,
@@ -393,7 +406,7 @@ contract Blockchain {
         uint256 _superadmin_address,
         uint256 leaddeveloper_id,
         uint256 developer_id,
-        string memory code,
+        string memory sourcecode,
         string memory utimestamp,
         string memory result,
         string memory ptimestamp,
@@ -406,7 +419,7 @@ contract Blockchain {
         toBlockchains[_superadmin_address] = toBlockchain(
             leaddeveloper_id,
             developer_id,
-            code,
+            sourcecode,
             utimestamp,
             result,
             ptimestamp,
@@ -425,7 +438,7 @@ contract Blockchain {
         returns (
             uint256 leaddeveloper_id,
             uint256 developer_id,
-            string memory code,
+            string memory sourcecode,
             string memory utimestamp,
             string memory result,
             string memory ptimestamp,
@@ -440,7 +453,7 @@ contract Blockchain {
         return (
             tb.leaddeveloper_id,
             tb.developer_id,
-            tb.code,
+            tb.sourcecode,
             tb.utimestamp,
             tb.result,
             tb.ptimestamp,

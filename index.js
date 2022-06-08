@@ -1,14 +1,19 @@
 const express = require("express");
-const axios = require("axios");
 const multer = require("multer");
-const FormData = require("form-data");
 const app = express();
-const fs = require("fs");
-const path = require("path");
 const nunjucks = require("nunjucks");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const upload = multer({ dest: "uploads/" });
 
+//Controllers
+const AuthController = require("./controllers/AuthController");
+const UploadController = require("./controllers/UploadController");
+const AdminController = require("./controllers/AdminController");
+const HomeController = require("./controllers/HomeController");
+const LeadController = require("./controllers/LeadController");
+
+//configure view engine
 nunjucks.configure("views", {
   autoescape: true,
   express: app,
@@ -16,10 +21,12 @@ nunjucks.configure("views", {
   noCache: true,
 });
 
-const { USERS, PYTHON_BASE_URL, PORT } = require("./constants");
-const allowAdmin = require("./middlewares/allowAdmin");
+const { PORT } = require("./constants");
+const isAdmin = require("./middlewares/isAdmin");
+const isLead = require("./middlewares/isLead");
 
 app.use(cookieParser());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/client/"));
 app.use(express.static(__dirname + "/bower_components/"));
@@ -31,107 +38,50 @@ app.use(
     saveUninitialized: false,
   })
 );
+
 //midleware for session
 app.use((req, res, next) => {
-  console.log(req.session, "SESSIOn");
   res.locals.user = req.session.user;
   next();
 });
 
-const upload = multer({ dest: "uploads/" });
-
-async function handlePostData(req, res) {
-  try {
-    //Save file
-    const file = req.file;
-    const url = PYTHON_BASE_URL + "/predict";
-    //send file to python
-    const formData = new FormData();
-    formData.append("file", fs.createReadStream(file.path));
-    formData.append("textname", req.body.textname);
-
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-
-    // console.log(formData);
-
-    const response = await axios.post(url, formData, config);
-    //save response
-    req.session.dev_id = response.data.developer_id;
-    req.session.responseData = response.data;
-
-    console.log(response.data);
-    //send response to client
-    res.redirect("/result");
-  } catch (error) {
-    console.log(error, "ERROR");
-    res.send({
-      success: false,
-      message: "Sending file to python backend failed",
-    });
-  }
+function logUploadTime(req, res, next) {
+  req.upload_time = new Date();
+  next();
 }
 
-app.get("/", (req, res) => {
-  res.render("index.html");
-});
-app.post("/upload", upload.single("file"), handlePostData);
-app.get("/result", (req, res) => {
-  const result = req.session.responseData;
-  res.render("result.html", { result });
-});
+// -------------------- ROUTES --------------------- //
+app.get("/", HomeController.getHome);
 
-app.get("/login", (req, res) => {
-  res.render("login.html");
-});
+app.post(
+  "/upload",
+  logUploadTime,
+  upload.single("file"),
+  UploadController.postUpload
+);
+app.get("/result", UploadController.getResult);
 
-app.post("/login", (req, res) => {
-  const { user_id, password } = req.body;
-  // Check if user exists
-  if (!(user_id in USERS)) {
-    return res.send({
-      success: false,
-      message: "User not found",
-    });
-  }
+app.get("/login", AuthController.getLogin);
+app.post("/login", AuthController.postLogin);
+app.get("/logout", AuthController.getLogout);
 
-  // Check if password is correct
-  if (USERS[user_id].password !== password) {
-    return res.send({
-      success: false,
-      message: "Wrong password",
-    });
-  }
-  req.session.user_id = user_id;
+app.get("/admin", isAdmin, AdminController.getAdmin);
+app.get("/lead", isLead, LeadController.getLead);
+// app.render("lead.html");
 
-  // Check if user is admin
-  if (USERS[user_id].admin) {
-    req.session.user = {
-      user_id,
-      admin: true,
-    };
-    res.redirect("/admin");
-  } else {
-    req.session.user = {
-      user_id,
-      admin: false,
-    };
-    res.redirect("/");
-  }
-});
+const start = async (err) => {
+  // const Blockchain = new web3.eth.Contract(
+  //   artifacts.abi,
+  //   "0xD4E71357A312AaA94ed89aFAD31786a0a69A0855"
+  // );
+  // console.log("Hello blockchain", Blockchain);
 
-app.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
-});
+  // const accounts = await web3.eth.getAccounts();
+  // const lms = await LMS.deployed();
+  // console.log("Accounts", accounts);
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+};
 
-app.get("/admin", allowAdmin, (req, res) => {
-  res.render("admin.html");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+start();

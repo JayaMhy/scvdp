@@ -9,9 +9,7 @@
   "scripts": {
     "start": "node index.js ",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "blockchain": "parcel client/blockchainadmin.html",
-    "build": "parcel build client/blockchainadmin.html"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,19 +21,21 @@
     "assert": "^2.0.0",
     "events": "^3.3.0",
     "https-browserify": "^1.0.0",
+    "nodemon": "^2.0.16",
     "os-browserify": "^0.3.0",
     "parcel": "^2.6.0",
     "querystring-es3": "^0.2.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "url": "^0.11.0",
-    "nodemon": "^2.0.16"
+    "url": "^0.11.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
     "multer": "^1.4.5-lts.1",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.3",
+    "truffle-contract": "^4.0.31",
+    "web3": "^1.7.3"
   }
 }

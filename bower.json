@@ -1,0 +1,23 @@
+{
+  "name": "scvdp",
+  "description": "",
+  "main": "truffle-config.js",
+  "authors": [
+    "jayamhy <jayamhy1@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/JayaMhy/flask-vulnerability-detection",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "web3": "^3.0.0",
+    "bootstrap": "4"
+  }
+}
