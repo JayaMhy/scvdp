@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 function logUploadTime(req, res, next) {
-  req.upload_time = new Date();
+  req.utimestamp = Math.floor(new Date().getTime() / 1000);
   next();
 }
 
@@ -66,19 +66,18 @@ app.post("/login", AuthController.postLogin);
 app.get("/logout", AuthController.getLogout);
 
 app.get("/admin", isAdmin, AdminController.getAdmin);
-app.get("/lead", isLead, LeadController.getLead);
-// app.render("lead.html");
+app.post("/admin/add-user", isAdmin, AdminController.postAddUser);
+
+// TODO: Remove prediction from the route
+app.get("/lead", isLead, LeadController.getAllMlResult);
+
+app.get(
+  "/lead/prediction/:serial_no",
+  isLead,
+  LeadController.getMlResultBySerialNo
+);
 
 const start = async (err) => {
-  // const Blockchain = new web3.eth.Contract(
-  //   artifacts.abi,
-  //   "0xD4E71357A312AaA94ed89aFAD31786a0a69A0855"
-  // );
-  // console.log("Hello blockchain", Blockchain);
-
-  // const accounts = await web3.eth.getAccounts();
-  // const lms = await LMS.deployed();
-  // console.log("Accounts", accounts);
   app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
   });

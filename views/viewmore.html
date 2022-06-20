@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %} Lead {% endblock%} {% block
+content%}
+
+<div>
+  <h3 style="color: rgb(167, 227, 242)">Results</h3>
+  <table class="table table-bordered table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Sl No.</th>
+        <th scope="col">Label</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for key,value in result %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{key}}</td>
+        <td>{{value}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

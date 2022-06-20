@@ -26,8 +26,7 @@ exports.postLogin = function (req, res) {
       admin: true,
     };
     res.redirect("/admin");
-  }
-  if (USERS[user_id].lead) {
+  } else if (USERS[user_id].lead) {
     req.session.user = {
       user_id,
       lead: true,

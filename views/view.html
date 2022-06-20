@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% block title %} Lead {% endblock%} {% block
+content%}
+
+<div>
+  <h3 class="mb-3" style="color: rgb(167, 227, 242)">Results</h3>
+
+  <h4>Developer Information</h4>
+  <div class="container grid-striped">
+    <div class="row">
+      <div class="col-sm">
+        <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+          <div class="d-flex p-2 bd-highlight">
+            <span class="mr-4">Developer Serial Id</span>
+            <span class="">{{ result["serial_no"] }}</span>
+          </div>
+          <div class="d-flex p-2 bd-highlight">
+            <span class="mr-4"> Developer ID </span>
+            <span class="">{{ result["developer_id"] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4>Source code Information</h4>
+    <div class="container grid-striped">
+      <div class="row">
+        <div class="col-sm">
+          <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+            <div class="d-flex p-2 bd-highlight">
+              <span class="mr-4">Filename</span>
+              <span class="">{{ result["filename"] }}</span>
+            </div>
+            <div class="d-flex p-2 bd-highlight">
+              <span class="mr-4">Filepath</span>
+              <span class="">{{ result["filepath"] }}</span>
+            </div>
+            <div class="d-flex p-2 bd-highlight">
+              <span class="mr-4">Upload Timestamp</span>
+              <span class="">{{ result["utimestamp"] }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4>Prediction Information</h4>
+      <div class="container grid-stripper">
+        <div class="row">
+          <div class="col-sm">
+            <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Is code Vulnerable?</span>
+                <span class="">{{ result["is_vulnerable"] }}</span>
+              </div>
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Prediction Timestamp</span>
+                <span class="">{{ result["ptimestamp"] }}</span>
+              </div>
+              <div class="p-2 bd-highlight">
+                <span class="mr-4">Vulnerable Score</span>
+                <span class="">{{ result["vulnerable_score"] }}</span>
+              </div>
+              <div class="p-2 bd-highlight">
+                <span class="mr-4">Non-Vulnerable Score</span>
+                <span class="">{{ result["nonvulnerable_score"] }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-outline-info"
+          onclick="myFunction()"
+        >
+          Store in IPFS
+        </button>
+        <button type="button" class="btn btn-outline-info">View Code</button>
+        <button type="button" class="btn btn-outline-info">Approve</button>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>

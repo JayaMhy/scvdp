@@ -2,77 +2,60 @@
 content%}
 
 <div class="d-flex align-items-center justify-content-center">
-  <form action="/upload" method="POST" enctype="multipart/form-data">
+  <form action="/admin/add-user" method="POST" enctype="multipart/form-data">
     <div class="container mb-4">
       <h3 class="ui inverted header">Add users in Blockchain</h3>
     </div>
 
+    <div>
+      <label for="">Role</label>
+      <select class="form-control" name="role">
+        <option>Select Role</option>
+        <option value="developer">Developer</option>
+        <option value="lead_developer">Lead Developer</option>
+      </select>
+    </div>
+
     <div class="container shadow-lg bg-primary rounded py-3">
       <div class="mb-1">
-        <label for="devloper_address" class="form-label"
-          >Developer Address</label
+        <label for="blockchain_address" class="form-label"
+          >Blockchain Address</label
         >
         <input
           type="text"
           class="form-control"
-          id="devloper_address"
-          placeholder="Developer Address"
+          name="blockchain_address"
+          placeholder="Blockchain Address"
         />
       </div>
-      <div>
-        <label for="">Role</label>
-        <select class="form-control">
-          <option value="">Select Role</option>
-          <option value="">Developer</option>
-          <option value="">Admin</option>
-        </select>
+
+      <div class="mb-1">
+        <label for="id" class="form-label">ID</label>
+        <input class="form-control" name="id" placeholder="ID" />
       </div>
       <div class="mb-1">
-        <label for="developer_id" class="form-label">Developer ID</label>
-        <input
-          class="form-control"
-          id="developer_id"
-          placeholder="Developer ID"
-        />
+        <label for="name" class="form-label">Name</label>
+        <input class="form-control" name="name" placeholder="Name" />
       </div>
       <div class="mb-1">
-        <label for="developer_name" class="form-label">Developer Name</label>
-        <input
-          class="form-control"
-          id="developer_name"
-          placeholder="Developer Name"
-        />
-      </div>
-      <div class="mb-1">
-        <label for="joining_date" class="form-label"
-          >Developer's Date of Joining</label
-        >
+        <label for="joining_date" class="form-label">Date of Joining</label>
         <input
           class="form-control"
           type="date"
-          id="joining_date"
+          name="joining_date"
           placeholder="Date of Joining"
         />
       </div>
     </div>
 
     <div class="container shadow-lg bg-primary rounded mt-4 py-3">
-      <div>
-        <button
-          type="button"
-          class="btn btn-dark"
-          id="add_dev"
-          onclick="addDeveloper()"
-        >
-          Add Developer
-        </button>
-      </div>
+      <button type="submit" class="btn btn-dark">Add User</button>
     </div>
   </form>
 </div>
 
 {% endblock %} {% block footer %}
 
-<script type="module" src="/js/index.js"></script>
+<!-- <script type="module" src="/js/index.js"></script> -->
 
 {% endblock %}

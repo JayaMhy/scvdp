@@ -3,7 +3,7 @@ const USERS = {
     name: "Jaya",
     password: "123",
     admin: true,
-    lead: false,
+    lead: true,
   },
   456456: {
     name: "Maya",

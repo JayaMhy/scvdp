@@ -8,28 +8,30 @@ exports.postUpload = async function (req, res) {
   try {
     //Save file
     const file = req.file;
-    const filePath = file["path"];
-    const uploadTime = req.upload_time;
+    const file_path = file["path"];
+    //'2022-06-10 15:31:03',
+
+    const utimestamp = req.utimestamp;
 
     const url = PYTHON_BASE_URL + "/predict";
     //send file to python
-    const formData = new FormData();
-    formData.append("file", fs.createReadStream(file.path));
-    formData.append("dev_id", req.body.dev_id);
+    const form_data = new FormData();
+    form_data.append("file", fs.createReadStream(file.path));
+    form_data.append("dev_id", req.body.dev_id);
 
     const response = await axios({
       method: "post",
       url,
-      data: formData,
+      data: form_data,
       headers: {
         "content-type": "multipart/form-data",
       },
     });
     //save response
     req.session.dev_id = response.data.developer_id;
-    req.session.responseData = response.data;
+    req.session.result = response.data;
 
-    console.log(uploadTime, filePath, Blockchain);
+    console.log(utimestamp, file_path);
     console.log(response.data);
 
     const {
@@ -37,7 +39,7 @@ exports.postUpload = async function (req, res) {
       filename,
       is_vulnerable,
       nonvulnerable_score,
-      prediction_time,
+      ptimestamp,
       vulnerable_score,
     } = response.data;
 
@@ -45,15 +47,15 @@ exports.postUpload = async function (req, res) {
     console.log(typeof is_vulnerable);
 
     await Blockchain.methods
-      .workMlResult(
-        1234,
+      .addMlResult(
         is_vulnerable.toString(),
         vulnerable_score.toString(),
         nonvulnerable_score.toString(),
         filename,
-        prediction_time,
-        prediction_time,
-        "1234"
+        ptimestamp,
+        utimestamp,
+        file_path,
+        developer_id
       )
       .send({
         // Blockchain Account Address
@@ -73,6 +75,21 @@ exports.postUpload = async function (req, res) {
 };
 
 exports.getResult = function (req, res) {
-  const result = req.session.responseData;
+  const result = req.session.result;
   res.render("result.html", { result });
 };
+
+//rough
+// exports.getMlResultBySerialNo = async function (req, res) {
+//   //:serial_no/
+//   const { serial_no } = req.params;
+//   await Blockchain.methods
+//     .getMlResultBySerialNo(Number(serial_no) - 1)
+//     .call(function (error, result) {
+//       console.log("RES", result);
+//       if (result[1] == "") {
+//         return res.redirect("/lead");
+//       }
+//       result = formatResult(result);
+//       res.render("result.html", { result });
+//     });
