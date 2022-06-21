@@ -3,6 +3,7 @@ const { Blockchain } = require("../blockchain");
 const { create } = require("ipfs-http-client");
 const fs = require("fs");
 
+// IPFS setup
 async function ipfsClient() {
   const ipfs = await create({
     host: "0.0.0.0",
