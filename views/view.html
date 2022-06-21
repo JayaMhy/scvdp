@@ -68,7 +68,7 @@ content%}
         </div>
       </div>
       <div>
-        <form action="/lead/save-to-ipfs" method="POST">
+        <form action="/lead/{{result.serial_no}}/save-to-ipfs" method="POST">
           <input type="hidden" value="{{result['filepath']}}" name="filepath" />
           <button type="submit" class="btn btn-outline-info">
             Store in IPFS

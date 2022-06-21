@@ -50,6 +50,11 @@ function logUploadTime(req, res, next) {
   next();
 }
 
+// function logStoreTime(req, res, next) {
+//   req.stimestamp = Math.floor(new Date().getTime() / 1000);
+//   next();
+// }
+
 // -------------------- ROUTES --------------------- //
 app.get("/", HomeController.getHome);
 
@@ -72,10 +77,10 @@ app.get("/lead", isLead, LeadController.getAllMlResult);
 app.get("/lead/:serial_no", isLead, LeadController.getMlResultBySerialNo);
 
 //IPFS
-app.post("/lead/save-to-ipfs", LeadController.saveFileToIpfs);
+app.post("/lead/:serial_no/save-to-ipfs", LeadController.saveFileToIpfs);
 
 const start = async (err) => {
-  app.listen(PORT, '0.0.0.0', () => {
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server started on port ${PORT}`);
   });
 };

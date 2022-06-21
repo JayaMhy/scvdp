@@ -65,11 +65,33 @@ async function saveFile(filePath) {
 
 exports.saveFileToIpfs = async function (req, res) {
   const filePath = req.body.filepath;
+  const filehash = await saveFile(filePath);
 
-  const fileHash = await saveFile(filePath);
+  const { serial_no } = req.params;
+  const ml_serial_no = serial_no;
+  const astatus = true;
+  const lead_developer_id = req.session.user.user_id;
+  const stimestamp = Math.floor(new Date().getTime() / 1000);
 
+  // console.log("--------------------------------------");
+  // console.log(ml_serial_no, lead_developer_id, stimestamp);
   fs.unlink(filePath, (err) => {
     if (err) console.log(err);
   });
-  res.render("ipfs.html", { fileHash });
+
+  await Blockchain.methods
+    .reviewResulttoBC(
+      ml_serial_no,
+      astatus,
+      stimestamp,
+      lead_developer_id,
+      filehash
+    )
+    .send({
+      // Blockchain Account Address
+      from: "0xE6B655A7AcD63f38f1c884bE364c9499f5C27dEC",
+      gas: "6721975",
+    });
+
+  res.redirect("/lead");
 };

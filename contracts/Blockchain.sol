@@ -21,11 +21,22 @@ contract Blockchain {
         string developer_id;
     }
 
+    // This is the finally written on 21 June, 2022
+    struct ReviewResult {
+        uint256 ml_serial_no; // ML Serial Number form the ML result struct
+        bool astatus; // Code accepted status
+        uint256 stimestamp; // store to ipfs and accepted timestamp
+        uint256 lead_developer_id;
+        string filehash;
+    }
+
     uint256 total_ml_result_count = 0;
+    uint256 total_review_result_count = 0;
 
     mapping(uint256 => Developer) developers;
     mapping(uint256 => Developer) lead_developers;
     mapping(uint256 => MlResult) ml_results;
+    mapping(uint256 => ReviewResult) reviewed;
 
     // add Developers
     function addDeveloper(
@@ -121,5 +132,44 @@ contract Blockchain {
         returns (MlResult memory)
     {
         return ml_results[serial_no];
+    }
+
+    function reviewResulttoBC(
+        uint256 ml_serial_no, // ML Serial Number form the ML result struct
+        bool astatus, // Code accepted status
+        uint256 stimestamp, // store to ipfs and accepted timestamp
+        uint256 lead_developer_id,
+        string memory filehash
+    ) public {
+        uint256 serial_no = total_review_result_count;
+        reviewed[serial_no] = ReviewResult(
+            ml_serial_no,
+            astatus,
+            stimestamp,
+            lead_developer_id,
+            filehash
+        );
+        total_review_result_count += 1;
+    }
+
+    function getReviewResult(uint256 serial_no)
+        public
+        view
+        returns (
+            bool astatus, // Code accepted status
+            uint256 ml_serial_no,
+            uint256 stimestamp, // store to ipfs and accepted timestamp
+            uint256 lead_developer_id,
+            string memory filehash
+        )
+    {
+        ReviewResult memory rr = reviewed[serial_no];
+        return (
+            rr.astatus,
+            rr.ml_serial_no,
+            rr.stimestamp,
+            rr.lead_developer_id,
+            rr.filehash
+        );
     }
 }
