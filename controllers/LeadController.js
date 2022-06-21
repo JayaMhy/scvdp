@@ -73,8 +73,8 @@ exports.saveFileToIpfs = async function (req, res) {
   const lead_developer_id = req.session.user.user_id;
   const stimestamp = Math.floor(new Date().getTime() / 1000);
 
-  // console.log("--------------------------------------");
-  // console.log(ml_serial_no, lead_developer_id, stimestamp);
+  console.log("--------------------------------------");
+  console.log(ml_serial_no, lead_developer_id, stimestamp);
   fs.unlink(filePath, (err) => {
     if (err) console.log(err);
   });
