@@ -67,15 +67,12 @@ app.get("/logout", AuthController.getLogout);
 
 app.get("/admin", isAdmin, AdminController.getAdmin);
 app.post("/admin/add-user", isAdmin, AdminController.postAddUser);
-
-// TODO: Remove prediction from the route
 app.get("/lead", isLead, LeadController.getAllMlResult);
 
-app.get(
-  "/lead/prediction/:serial_no",
-  isLead,
-  LeadController.getMlResultBySerialNo
-);
+app.get("/lead/:serial_no", isLead, LeadController.getMlResultBySerialNo);
+
+//IPFS
+app.post("/lead/save-to-ipfs", LeadController.saveFileToIpfs);
 
 const start = async (err) => {
   app.listen(PORT, () => {

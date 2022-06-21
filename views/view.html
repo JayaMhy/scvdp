@@ -68,15 +68,22 @@ content%}
         </div>
       </div>
       <div>
-        <button
-          type="button"
-          class="btn btn-outline-info"
-          onclick="myFunction()"
-        >
-          Store in IPFS
-        </button>
+        <form action="/lead/save-to-ipfs" method="POST">
+          <input type="hidden" value="{{result['filepath']}}" name="filepath" />
+          <button type="submit" class="btn btn-outline-info">
+            Store in IPFS
+          </button>
+        </form>
+
         <button type="button" class="btn btn-outline-info">View Code</button>
-        <button type="button" class="btn btn-outline-info">Approve</button>
+        <button type="button" class="btn btn-outline-info">Store in BC</button>
+
+        <!-- <form action="/lead/view_code" method="POST">
+          <input type="hidden" value="{{result['filename']}}" name="filename" />
+          <button type="submit" class="btn btn-outline-info">
+            View Code
+          </button>
+        </form> -->
       </div>
     </div>
     {% endblock %}

@@ -1,5 +1,16 @@
 const { number } = require("nunjucks/src/tests");
 const { Blockchain } = require("../blockchain");
+const { create } = require("ipfs-http-client");
+const fs = require("fs");
+
+async function ipfsClient() {
+  const ipfs = await create({
+    host: "0.0.0.0",
+    port: 5001,
+    protocol: "http",
+  });
+  return ipfs;
+}
 
 function formatResult(result) {
   return {
@@ -36,7 +47,28 @@ exports.getMlResultBySerialNo = async function (req, res) {
     });
 };
 
-exports.myFunction = async function () {
-  // alert("I am an alert box!");
-  // console.log("store in IPFS");
+//IPFS
+
+async function saveFile(filePath) {
+  let ipfs = await ipfsClient();
+
+  let data = fs.readFileSync(filePath);
+  let options = {
+    warpWithDirectory: false,
+    progress: (prog) => console.log(`Saved :${prog}`),
+  };
+  const { cid } = await ipfs.add(data, options);
+  console.log(cid);
+  return cid;
+}
+
+exports.saveFileToIpfs = async function (req, res) {
+  const filePath = req.body.filepath;
+
+  const fileHash = await saveFile(filePath);
+
+  fs.unlink(filePath, (err) => {
+    if (err) console.log(err);
+  });
+  res.render("ipfs.html", { fileHash });
 };
