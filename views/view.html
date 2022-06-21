@@ -67,25 +67,44 @@ content%}
           </div>
         </div>
       </div>
-      <div>
-        <form action="/lead/{{result.serial_no}}/save-to-ipfs" method="POST">
-          <input type="hidden" value="{{result['filepath']}}" name="filepath" />
-          <button type="submit" class="btn btn-outline-info">
-            Store in IPFS
-          </button>
-        </form>
 
-        <button type="button" class="btn btn-outline-info">View Code</button>
-        <button type="button" class="btn btn-outline-info">Store in BC</button>
+      <h4>IPFS Information</h4>
+      <div class="container grid-striped">
+        <div class="row">
+          <div class="col-sm">
+            <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Hash</span>
+                <span class="">
+                  {% if result['ipfs'] %} {{ result['ipfs'] }} {% else %} Not
+                  added to ipfs {% endif %}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <!-- <form action="/lead/view_code" method="POST">
+        <div>
+          <form action="/lead/{{result.serial_no}}/save-to-ipfs" method="POST">
+            <input
+              type="hidden"
+              value="{{result['filepath']}}"
+              name="filepath"
+            />
+            <button type="submit" class="btn btn-outline-info">Accept</button>
+          </form>
+
+          <button type="button" class="btn btn-outline-info">View Code</button>
+
+          <!-- <form action="/lead/view_code" method="POST">
           <input type="hidden" value="{{result['filename']}}" name="filename" />
           <button type="submit" class="btn btn-outline-info">
             View Code
           </button>
         </form> -->
+        </div>
       </div>
+      {% endblock %}
     </div>
-    {% endblock %}
   </div>
 </div>
