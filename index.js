@@ -75,7 +75,7 @@ app.get("/lead/:serial_no", isLead, LeadController.getMlResultBySerialNo);
 app.post("/lead/save-to-ipfs", LeadController.saveFileToIpfs);
 
 const start = async (err) => {
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server started on port ${PORT}`);
   });
 };
