@@ -12,7 +12,7 @@ const USERS = {
     leadDeveloper: false,
   },
   890890: {
-    name: "lead",
+    name: "Lead",
     password: "123",
     admin: false,
     lead: true,
