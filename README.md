@@ -28,9 +28,3 @@ In new terminal
 cd vulnerability-detector
 python app.py
 ```
-
-To start IPFS
-
-```sh
-ipfs daemon
-```
