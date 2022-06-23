@@ -1041,21 +1041,12 @@
     "5777": {
       "events": {},
       "links": {},
-<<<<<<< HEAD
-      "address": "0x7EAC1FE5B6cF983E5fDc73312C5b39dE539A7202",
-      "transactionHash": "0xb3000dac0acfd7695c870914aef7434796dc8c653db590dc48d166188cd1b58c"
+      "address": "0x419Bf63ABC9f7576f78A7f8153b8Bb52b0Ae318C",
+      "transactionHash": "0x3e68932dafdbe69309ecb7472194000505e6cf4ad597c280321728b018e8a44c"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-23T08:16:49.974Z",
-=======
-      "address": "0x51192535a63C6e03375a2118EF2bBDcC99892Ad9",
-      "transactionHash": "0x77af1d987874e1286e5f40beb49625888f4b4736288ac772498d9f51337b958d"
-    }
-  },
-  "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-22T15:53:24.203Z",
->>>>>>> 52adaa6db666b96b880d8c9b8a9e957ea4b5b268
+  "updatedAt": "2022-06-23T19:57:59.907Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

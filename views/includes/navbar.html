@@ -1,33 +1,28 @@
-<nav
-  class="navbar navbar-expand-lg navbar-light"
-  style="background-color: #e3f2fd"
->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
   <a class="navbar-brand" href="/">PROJECT</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-link active" href="/"
-        >Home <span class="sr-only">(current)</span></a
-      >
-      {% if user %}
+      <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      {% if user.lead %}
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/lead">Lead</a>
       </li>
+      {% endif %}
       {% if user.admin %}
       <li class="nav-item">
         <a class="nav-link" href="/admin">Admin</a>
       </li>
-      {% endif %} {% else %}
+      {% endif %}
+      {% if user %}
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+
+      {% else %}
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>

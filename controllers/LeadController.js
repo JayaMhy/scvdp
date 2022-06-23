@@ -28,14 +28,6 @@ function formatResult(result) {
     developer_id: result[8],
   };
 }
-// TODO: NEED TO COMPLETE THIS
-// function scoreRange(nonvulnerable_score){
-//   if (nonvulnerable_score >= 60){
-//     return "Safe"
-//   }
-//   else if (nonvulnerable_score < 60 && nonvulnerable_score > 30)
-
-// }
 
 exports.getAllMlResult = async function (req, res) {
   await Blockchain.methods.getAllMlResult().call(function (error, results) {
@@ -86,6 +78,7 @@ async function saveFile(filePath) {
   return cid;
 }
 
+//function to save file in ipfs
 exports.saveFileToIpfs = async function (req, res) {
   const filePath = req.body.filepath;
   const filehash = await saveFile(filePath);
@@ -112,13 +105,14 @@ exports.saveFileToIpfs = async function (req, res) {
     )
     .send({
       // Blockchain Account Address
-      from: "0xcF5fA0Be2c985edECAaa13EA861fc96E8bDf30bB",
+      from: "0xE6B655A7AcD63f38f1c884bE364c9499f5C27dEC",
       gas: "6721975",
     });
 
   res.redirect("/lead/");
 };
 
+//Function to show code in modal
 exports.getCode = async function (req, res) {
   const { filehash } = req.params;
 

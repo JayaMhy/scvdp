@@ -1,18 +1,15 @@
-{% extends 'base.html' %} {% block title %} Lead {% endblock%} {% block
-content%}
-
+{% extends "base.html" %}
+{% block title %}
+Lead
+{% endblock title %}
+{% block content %}
 <!--MODAL-->
 <div class="modal" tabindex="-1" id="code-modal">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-danger">Source Code</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -24,9 +21,7 @@ content%}
         </pre>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -34,122 +29,126 @@ content%}
 <!-- END MODAL -->
 <div>
   <h3 class="mb-3" style="color: rgb(167, 227, 242)">Results</h3>
-
-  <div class="container">
-    <h5>Developer Information</h5>
-    <div class="grid-striped">
-      <div class="row">
-        <div class="col-sm">
-          <div class="d-flex flex-column bd-highlight align-items-start mb-3">
-            <div class="d-flex p-2 bd-highlight">
-              <span class="mr-4">Developer Serial Id</span>
-              <span class="">{{ result["serial_no"] }}</span>
-            </div>
-            <div class="d-flex p-2 bd-highlight">
-              <span class="mr-4"> Developer ID </span>
-              <span class="">{{ result["developer_id"] }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h5>Source code Information</h5>
-    <div class="grid-striped">
-      <div class="row">
-        <div class="col-sm">
-          <div class="d-flex flex-column bd-highlight align-items-start mb-3">
-            <div class="d-flex p-2 bd-highlight">
-              <span class="mr-4">Filename</span>
-              <span class="">{{ result["filename"] }}</span>
-            </div>
-            <div class="d-flex p-2 bd-highlight">
-              <span class="mr-4">Filepath</span>
-              <span class="">{{ result["filepath"] }}</span>
-            </div>
-            <div class="d-flex p-2 bd-highlight">
-              <span class="mr-4">Upload Timestamp</span>
-              <span class="">{{ result["utimestamp"] }}</span>
+  <div class="container d-flex flex-column" style="gap: 30px">
+    <section>
+      <h5>Developer Information</h5>
+      <div class="grid-striped">
+        <div class="row">
+          <div class="col-sm">
+            <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Developer Serial Id</span>
+                <span>{{ result["serial_no"] }}</span>
+              </div>
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Developer ID</span>
+                <span>{{ result["developer_id"] }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
+    </section>
+    <section>
+      <h5>Source code Information</h5>
+      <div class="grid-striped">
+        <div class="row">
+          <div class="col-sm">
+            <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Filename</span>
+                <span>{{ result["filename"] }}</span>
+              </div>
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Filepath</span>
+                <span>{{ result["filepath"] }}</span>
+              </div>
+              <div class="d-flex p-2 bd-highlight">
+                <span class="mr-4">Upload Timestamp</span>
+                <span>{{ result["utimestamp"] }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
       <h5>Prediction Information</h5>
-      <div class="grid-stripper">
+      <div class="grid-striped">
         <div class="row">
           <div class="col-sm">
             <div class="d-flex flex-column bd-highlight align-items-start mb-3">
               <div class="d-flex p-2 bd-highlight">
                 <span class="mr-4">Is code Vulnerable?</span>
-                <span class="">{{ result["is_vulnerable"] }}</span>
+                <span>{{ result.is_vulnerable }}</span>
               </div>
               <div class="d-flex p-2 bd-highlight">
                 <span class="mr-4">Prediction Timestamp</span>
-                <span class="">{{ result["ptimestamp"] }}</span>
+                <span>{{ result.ptimestamp }}</span>
               </div>
               <div class="p-2 bd-highlight">
                 <span class="mr-4">Vulnerable Score</span>
-                <span class="">{{ result["vulnerable_score"] }}</span>
+                <span>{{ result.vulnerable_score }}</span>
               </div>
               <div class="p-2 bd-highlight">
                 <span class="mr-4">Non-Vulnerable Score</span>
-                <span class="">{{ result["nonvulnerable_score"] }}</span>
+                <span>{{ result.nonvulnerable_score }}</span>
+              </div>
+              <div class="p-2 bd-highlight">
+                <span class="mr-4">Rating</span>
+                <span
+                  class="{{score_color(result.nonvulnerable_score)}}">{{score_text(result.nonvulnerable_score)}}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <h5>IPFS Information</h5>
+    </section>
+    <section>
+      <h5>
+        IPFS Information
+      </h5>
       <div class="grid-striped">
         <div class="row">
           <div class="col-sm">
             <div class="d-flex flex-column bd-highlight align-items-start mb-3">
               <div class="d-flex p-2 bd-highlight">
                 <span class="mr-4">Hash</span>
-                <span class="">
-                  {% if filehash!='' %} {{ filehash }} {% else %} Not added to
-                  ipfs. Click accept button. {% endif %}
+                <span>
+                  {% if filehash != '' %}
+                  {{ filehash }}
+                  {% else %}
+                  Not added to
+                  ipfs. Click accept button.
+                  {% endif %}
                 </span>
               </div>
             </div>
           </div>
         </div>
-
         <!-- buttons -->
         <div class="d-flex justify-content-center mt-4">
           <div class="mx-2">
-            <form
-              action="/lead/{{result.serial_no}}/save-to-ipfs"
-              method="POST"
-            >
-              <input
-                type="hidden"
-                value="{{result['filepath']}}"
-                name="filepath"
-              />
-              {% if filehash!='' %}
+            <form action="/lead/{{ result.serial_no }}/save-to-ipfs" method="post">
+              <input type="hidden" value="{{ result['filepath'] }}" name="filepath" />
+              {% if filehash != '' %}
               <button type="submit" class="btn btn-outline-info" disabled>
                 Already Accepted
               </button>
               {% else %}
-              <button type="submit" class="btn btn-outline-info">Accept</button>
+              <button type="submit" class="btn btn-outline-info">
+                Accept
+              </button>
               {% endif %}
             </form>
           </div>
           <div class="mx-2">
             {% if filehash != '' %}
-            <button
-              type="button"
-              class="btn btn-outline-info"
-              onclick="openCodeModal()"
-            >
+            <button type="button" class="btn btn-outline-info" onclick="openCodeModal()">
               View Code
             </button>
             {% endif %}
           </div>
-
           <script>
             function openCodeModal() {
               fetch("/lead/{{result.serial_no}}/get-code/{{filehash}}")
@@ -157,9 +156,9 @@ content%}
                   return response.json();
                 })
                 .then(function (data) {
-                  document.querySelector(
-                    "#code-modal .modal-body code"
-                  ).innerText = data.code;
+                  document
+                    .querySelector("#code-modal .modal-body code")
+                    .innerText = data.code;
                   $("#code-modal").modal();
                   // hljs.initHighlightingOnLoad();
                 });
@@ -167,8 +166,7 @@ content%}
           </script>
         </div>
       </div>
-
-      {% endblock %}
-    </div>
+    </section>
   </div>
 </div>
+{% endblock %}
