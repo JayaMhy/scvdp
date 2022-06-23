@@ -1,6 +1,37 @@
 {% extends 'base.html' %} {% block title %} Lead {% endblock%} {% block
 content%}
 
+<!--MODAL-->
+<div class="modal" tabindex="-1" id="code-modal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Source Code</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left">
+        <pre>
+          <code class="language-c">
+            
+          </code> 
+        </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
 <div>
   <h3 class="mb-3" style="color: rgb(167, 227, 242)">Results</h3>
 
@@ -93,8 +124,29 @@ content%}
             />
             <button type="submit" class="btn btn-outline-info">Accept</button>
           </form>
+          <script>
+            function openCodeModal() {
+              fetch("/lead/{{result.serial_no}}/get-code")
+                .then(function (response) {
+                  return response.json();
+                })
+                .then(function (data) {
+                  document.querySelector(
+                    "#code-modal .modal-body code"
+                  ).innerText = data.code;
+                  $("#code-modal").modal();
+                  // hljs.initHighlightingOnLoad();
+                });
+            }
+          </script>
 
-          <button type="button" class="btn btn-outline-info">View Code</button>
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            onclick="openCodeModal()"
+          >
+            View Code
+          </button>
 
           <!-- <form action="/lead/view_code" method="POST">
           <input type="hidden" value="{{result['filename']}}" name="filename" />
@@ -104,6 +156,7 @@ content%}
         </form> -->
         </div>
       </div>
+
       {% endblock %}
     </div>
   </div>
