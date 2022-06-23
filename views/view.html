@@ -107,14 +107,15 @@ content%}
               <div class="d-flex p-2 bd-highlight">
                 <span class="mr-4">Hash</span>
                 <span class="">
-                  {% if result['ipfs'] %} {{ result['ipfs'] }} {% else %} Not
-                  added to ipfs {% endif %}
+                  {% if filehash!='' %} {{ filehash }} {% else %} Not added to
+                  ipfs. Click accept button. {% endif %}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- buttons -->
         <div>
           <form action="/lead/{{result.serial_no}}/save-to-ipfs" method="POST">
             <input
@@ -139,7 +140,7 @@ content%}
                 });
             }
           </script>
-
+          <!-- INCOMPLETE CODE-->
           <button
             type="button"
             class="btn btn-outline-info"
@@ -147,6 +148,15 @@ content%}
           >
             View Code
           </button>
+          {% if filehash != '' %}
+          <a
+            href="http://127.0.0.1:8080/ipfs/{{filehash}}"
+            target="_blank"
+            type="button"
+            class="btn btn-outline-info"
+            >View Code</a
+          >
+          {% endif %}
 
           <!-- <form action="/lead/view_code" method="POST">
           <input type="hidden" value="{{result['filename']}}" name="filename" />
