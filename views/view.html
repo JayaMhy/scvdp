@@ -35,25 +35,27 @@ content%}
 <div>
   <h3 class="mb-3" style="color: rgb(167, 227, 242)">Results</h3>
 
-  <h4>Developer Information</h4>
-  <div class="container grid-striped">
-    <div class="row">
-      <div class="col-sm">
-        <div class="d-flex flex-column bd-highlight align-items-start mb-3">
-          <div class="d-flex p-2 bd-highlight">
-            <span class="mr-4">Developer Serial Id</span>
-            <span class="">{{ result["serial_no"] }}</span>
-          </div>
-          <div class="d-flex p-2 bd-highlight">
-            <span class="mr-4"> Developer ID </span>
-            <span class="">{{ result["developer_id"] }}</span>
+  <div class="container">
+    <h5>Developer Information</h5>
+    <div class="grid-striped">
+      <div class="row">
+        <div class="col-sm">
+          <div class="d-flex flex-column bd-highlight align-items-start mb-3">
+            <div class="d-flex p-2 bd-highlight">
+              <span class="mr-4">Developer Serial Id</span>
+              <span class="">{{ result["serial_no"] }}</span>
+            </div>
+            <div class="d-flex p-2 bd-highlight">
+              <span class="mr-4"> Developer ID </span>
+              <span class="">{{ result["developer_id"] }}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <h4>Source code Information</h4>
-    <div class="container grid-striped">
+    <h5>Source code Information</h5>
+    <div class="grid-striped">
       <div class="row">
         <div class="col-sm">
           <div class="d-flex flex-column bd-highlight align-items-start mb-3">
@@ -73,8 +75,8 @@ content%}
         </div>
       </div>
 
-      <h4>Prediction Information</h4>
-      <div class="container grid-stripper">
+      <h5>Prediction Information</h5>
+      <div class="grid-stripper">
         <div class="row">
           <div class="col-sm">
             <div class="d-flex flex-column bd-highlight align-items-start mb-3">
@@ -99,8 +101,8 @@ content%}
         </div>
       </div>
 
-      <h4>IPFS Information</h4>
-      <div class="container grid-striped">
+      <h5>IPFS Information</h5>
+      <div class="grid-striped">
         <div class="row">
           <div class="col-sm">
             <div class="d-flex flex-column bd-highlight align-items-start mb-3">
@@ -116,15 +118,37 @@ content%}
         </div>
 
         <!-- buttons -->
-        <div>
-          <form action="/lead/{{result.serial_no}}/save-to-ipfs" method="POST">
-            <input
-              type="hidden"
-              value="{{result['filepath']}}"
-              name="filepath"
-            />
-            <button type="submit" class="btn btn-outline-info">Accept</button>
-          </form>
+        <div class="d-flex justify-content-center mt-4">
+          <div class="mx-2">
+            <form
+              action="/lead/{{result.serial_no}}/save-to-ipfs"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                value="{{result['filepath']}}"
+                name="filepath"
+              />
+              {% if filehash!='' %}
+              <button type="submit" class="btn btn-outline-info" disabled>
+                Already Accepted
+              </button>
+              {% else %}
+              <button type="submit" class="btn btn-outline-info">Accept</button>
+              {% endif %}
+            </form>
+          </div>
+          <div class="mx-2">
+            {% if filehash != '' %}
+            <button
+              type="button"
+              class="btn btn-outline-info"
+              onclick="openCodeModal()"
+            >
+              View Code
+            </button>
+            {% endif %}
+          </div>
 
           <script>
             function openCodeModal() {
@@ -141,16 +165,6 @@ content%}
                 });
             }
           </script>
-
-          {% if filehash != '' %}
-          <button
-            type="button"
-            class="btn btn-outline-info"
-            onclick="openCodeModal()"
-          >
-            View Code
-          </button>
-          {% endif %}
         </div>
       </div>
 

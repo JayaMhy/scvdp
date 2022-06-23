@@ -28,6 +28,14 @@ function formatResult(result) {
     developer_id: result[8],
   };
 }
+// TODO: NEED TO COMPLETE THIS
+// function scoreRange(nonvulnerable_score){
+//   if (nonvulnerable_score >= 60){
+//     return "Safe"
+//   }
+//   else if (nonvulnerable_score < 60 && nonvulnerable_score > 30)
+
+// }
 
 exports.getAllMlResult = async function (req, res) {
   await Blockchain.methods.getAllMlResult().call(function (error, results) {
@@ -59,6 +67,8 @@ exports.getMlResultBySerialNo = async function (req, res) {
       filehash = result;
     });
   console.log(result, filehash, "-----------------------------");
+
+
   res.render("view.html", { result, filehash });
 };
 
