@@ -125,9 +125,10 @@ content%}
             />
             <button type="submit" class="btn btn-outline-info">Accept</button>
           </form>
+
           <script>
             function openCodeModal() {
-              fetch("/lead/{{result.serial_no}}/get-code")
+              fetch("/lead/{{result.serial_no}}/get-code/{{filehash}}")
                 .then(function (response) {
                   return response.json();
                 })
@@ -140,7 +141,8 @@ content%}
                 });
             }
           </script>
-          <!-- INCOMPLETE CODE-->
+
+          {% if filehash != '' %}
           <button
             type="button"
             class="btn btn-outline-info"
@@ -148,22 +150,7 @@ content%}
           >
             View Code
           </button>
-          {% if filehash != '' %}
-          <a
-            href="http://127.0.0.1:8080/ipfs/{{filehash}}"
-            target="_blank"
-            type="button"
-            class="btn btn-outline-info"
-            >View Code</a
-          >
           {% endif %}
-
-          <!-- <form action="/lead/view_code" method="POST">
-          <input type="hidden" value="{{result['filename']}}" name="filename" />
-          <button type="submit" class="btn btn-outline-info">
-            View Code
-          </button>
-        </form> -->
         </div>
       </div>
 

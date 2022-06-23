@@ -75,9 +75,10 @@ app.post("/admin/add-user", isAdmin, AdminController.postAddUser);
 app.get("/lead", isLead, LeadController.getAllMlResult);
 
 app.get("/lead/:serial_no", isLead, LeadController.getMlResultBySerialNo);
+app.get("/lead/:serial_no/get-code/:filehash", isLead, LeadController.getCode);
 
 //IPFS
-app.post("/lead/:serial_no/save-to-ipfs", LeadController.saveFileToIpfs);
+app.post("/lead/:serial_no/save-to-ipfs/", LeadController.saveFileToIpfs);
 
 const start = async (err) => {
   app.listen(PORT, "0.0.0.0", () => {
