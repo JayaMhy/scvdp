@@ -38,14 +38,26 @@ exports.getAllMlResult = async function (req, res) {
 exports.getMlResultBySerialNo = async function (req, res) {
   const { serial_no } = req.params;
   console.log(serial_no);
+
+  var result = [];
+  var filehash = '';
   await Blockchain.methods
     .getMlResultBySerialNo(serial_no)
-    .call(function (error, result) {
-      console.log("RES", result);
+    .call(function (error, res) {
+      console.log("RES", res);
 
-      result = formatResult(result);
-      res.render("view.html", { result });
+      result = formatResult(res);
+      //res.render("view.html", { result });
     });
+
+    await Blockchain.methods
+    .getResultByMlSerialNo(serial_no)
+    .call(function (error, result) {
+      console.log("IPFS hash", result);
+      filehash = result;
+    });
+    console.log(result,filehash,'-----------------------------');
+    res.render("view.html", { result, filehash });
 };
 
 //IPFS
@@ -85,11 +97,11 @@ exports.saveFileToIpfs = async function (req, res) {
       astatus,
       stimestamp,
       lead_developer_id,
-      filehash
+      filehash.toString()
     )
     .send({
       // Blockchain Account Address
-      from: "0x7e84752e96Cb536fa81aA31f9966FF4f0CE132C8",
+      from: "0xcF5fA0Be2c985edECAaa13EA861fc96E8bDf30bB",
       gas: "6721975",
     });
 

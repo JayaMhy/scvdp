@@ -23,6 +23,7 @@ contract Blockchain {
 
     // This is the finally written on 21 June, 2022
     struct ReviewResult {
+        uint256 serial_no;
         uint256 ml_serial_no; // ML Serial Number form the ML result struct
         bool astatus; // Code accepted status
         uint256 stimestamp; // store to ipfs and accepted timestamp
@@ -143,6 +144,7 @@ contract Blockchain {
     ) public {
         uint256 serial_no = total_review_result_count;
         reviewed[serial_no] = ReviewResult(
+            serial_no,
             ml_serial_no,
             astatus,
             stimestamp,
@@ -156,20 +158,36 @@ contract Blockchain {
         public
         view
         returns (
-            bool astatus, // Code accepted status
+            uint256 _serial_no,
             uint256 ml_serial_no,
-            uint256 stimestamp, // store to ipfs and accepted timestamp
+            bool astatus,
+            uint256 stimestamp,
             uint256 lead_developer_id,
             string memory filehash
         )
     {
         ReviewResult memory rr = reviewed[serial_no];
         return (
-            rr.astatus,
+            rr.serial_no,
             rr.ml_serial_no,
+            rr.astatus,
             rr.stimestamp,
             rr.lead_developer_id,
             rr.filehash
         );
+    }
+
+    function getResultByMlSerialNo(uint256 _ml_serial_no)
+        public
+        view
+        returns (string memory filehash)
+    {
+        for (uint256 i = 0; i < total_review_result_count; i++) {
+            ReviewResult memory rr = reviewed[i];
+            if (rr.ml_serial_no == _ml_serial_no) {
+                filehash = rr.filehash;
+                break;
+            }
+        }
     }
 }
