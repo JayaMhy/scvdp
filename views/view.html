@@ -148,6 +148,7 @@ content%}
           >
             View Code
           </button>
+
           {% if filehash != '' %}
           <a
             href="http://127.0.0.1:8080/ipfs/{{filehash}}"
@@ -157,13 +158,6 @@ content%}
             >View Code</a
           >
           {% endif %}
-
-          <!-- <form action="/lead/view_code" method="POST">
-          <input type="hidden" value="{{result['filename']}}" name="filename" />
-          <button type="submit" class="btn btn-outline-info">
-            View Code
-          </button>
-        </form> -->
         </div>
       </div>
 

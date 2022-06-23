@@ -108,12 +108,5 @@ exports.saveFileToIpfs = async function (req, res) {
   res.redirect("/lead");
 };
 
-exports.getCode = async function (req, res) {
-  const { serial_no } = req.params;
-  console.log(serial_no);
-  const code = fs.readFileSync("uploads/d4bc0c9507253b7c5dd4419075973534", {
-    encoding: "utf8",
-    flag: "r",
-  });
-  res.json({ code: code });
+
 };
