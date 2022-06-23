@@ -89,9 +89,19 @@ exports.saveFileToIpfs = async function (req, res) {
     )
     .send({
       // Blockchain Account Address
-      from: "0x7e84752e96Cb536fa81aA31f9966FF4f0CE132C8",
+      from: "0xE6B655A7AcD63f38f1c884bE364c9499f5C27dEC",
       gas: "6721975",
     });
 
   res.redirect("/lead");
+};
+
+exports.getCode = async function (req, res) {
+  const { serial_no } = req.params;
+  console.log(serial_no);
+  const code = fs.readFileSync("uploads/d4bc0c9507253b7c5dd4419075973534", {
+    encoding: "utf8",
+    flag: "r",
+  });
+  res.json({ code: code });
 };

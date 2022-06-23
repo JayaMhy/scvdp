@@ -10,14 +10,14 @@ exports.postAddUser = async function (req, res) {
     await scvContract.methods
       .addDeveloper(blockchain_address, id, name, joining_date)
       .send({
-        from: "0x7e84752e96Cb536fa81aA31f9966FF4f0CE132C8",
+        from: "0xE6B655A7AcD63f38f1c884bE364c9499f5C27dEC",
       });
     return res.json({ success: true });
   } else if (role == "lead_developer") {
     await scvContract.methods
       .addLeadDeveloper(blockchain_address, id, name, joining_date)
       .send({
-        from: "0x7e84752e96Cb536fa81aA31f9966FF4f0CE132C8",
+        from: "0xE6B655A7AcD63f38f1c884bE364c9499f5C27dEC",
       });
     return res.json({ success: true });
   } else {
