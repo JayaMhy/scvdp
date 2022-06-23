@@ -2,6 +2,8 @@ const { number } = require("nunjucks/src/tests");
 const { Blockchain } = require("../blockchain");
 const { create } = require("ipfs-http-client");
 const fs = require("fs");
+const request = require("request");
+// const requ = require('request');
 
 // IPFS setup
 async function ipfsClient() {
@@ -26,6 +28,14 @@ function formatResult(result) {
     developer_id: result[8],
   };
 }
+// TODO: NEED TO COMPLETE THIS
+// function scoreRange(nonvulnerable_score){
+//   if (nonvulnerable_score >= 60){
+//     return "Safe"
+//   }
+//   else if (nonvulnerable_score < 60 && nonvulnerable_score > 30)
+
+// }
 
 exports.getAllMlResult = async function (req, res) {
   await Blockchain.methods.getAllMlResult().call(function (error, results) {
@@ -57,6 +67,7 @@ exports.getMlResultBySerialNo = async function (req, res) {
       filehash = result;
     });
   console.log(result, filehash, "-----------------------------");
+
   res.render("view.html", { result, filehash });
 };
 
@@ -101,12 +112,27 @@ exports.saveFileToIpfs = async function (req, res) {
     )
     .send({
       // Blockchain Account Address
-      from: "0xE6B655A7AcD63f38f1c884bE364c9499f5C27dEC",
+      from: "0xcF5fA0Be2c985edECAaa13EA861fc96E8bDf30bB",
       gas: "6721975",
     });
 
-  res.redirect("/lead");
+  res.redirect("/lead/");
 };
 
+exports.getCode = async function (req, res) {
+  const { filehash } = req.params;
 
+  console.log(filehash);
+
+  const url = "http://127.0.0.1:8080/ipfs/" + filehash;
+
+  console.log(url);
+
+  request(url, function (err, response, body) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json({ code: body });
+    }
+  });
 };
