@@ -58,7 +58,6 @@ exports.getMlResultBySerialNo = async function (req, res) {
       console.log("IPFS hash", result);
       filehash = result;
     });
-  console.log(result, filehash, "-----------------------------");
 
   res.render("view.html", { result, filehash });
 };
