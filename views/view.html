@@ -94,16 +94,57 @@ Lead
                 <span class="mr-4">Non-Vulnerable Score</span>
                 <span>{{ result.nonvulnerable_score }}</span>
               </div>
-              <div class="p-2 bd-highlight">
-                <span class="mr-4">Rating</span>
-                <span
-                  class="{{score_color(result.nonvulnerable_score)}}">{{score_text(result.nonvulnerable_score)}}</span>
-              </div>
+
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <section>
+      <h5>SCVDP Non-Vulnerability Severity Ratings</h5>
+      <div class="grid-striped">
+        <div class="row">
+          <div class="col-sm my-5">
+            <div class="p-2 bd-highlight h3 mt-2">
+              <span class="mr-2">Rating : </span>
+              <span class="{{ score_color(result.nonvulnerable_score) }}">
+                {{score_text(result.nonvulnerable_score)}}</span>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="d-flex flex-column bd-highlight align-items-start my-4">
+              <table class="table table-sm table-bordered table-dark" style="font-size: 12px">
+                <thead>
+                  <tr>
+                    <th scope="col">Level of Severity</th>
+                    <th scope="col">Proposed Non-Vulnerability Range</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- <th scope="row">Safe</th> -->
+                    <td>Safe</td>
+                    <td>60 to 100</td>
+                  </tr>
+                  <tr>
+                    <!-- <th scope="row">Moderately safe</th> -->
+                    <td>Moderately Safe</td>
+                    <td>30 to 60</td>
+                  </tr>
+                  <tr>
+                    <!-- <th scope="row">Unsafe</th> -->
+                    <td>Unsafe</td>
+                    <td>0 to 30</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section>
       <h5>
         IPFS Information

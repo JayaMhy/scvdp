@@ -1,27 +1,40 @@
 {% extends 'base.html' %}
 {% block title %}Result{% endblock %}
 {% block
-  content %}
-  <div class="container">
-      <h1>File is {{score_text(result.nonvulnerable_score)}}</h1>
-    {% if result.is_vulnerable %}
-      <img src="/images/vulnerable-dark.gif"
-           alt=""
-           style="max-width: 240px"
-           class="my-5"/>
-    {% else %}
-      <img src="/images/safe-dark.gif"
-           alt=""
-           style="max-width: 240px"
-           class="my-5"/>
-    {% endif %}
- 
-    <h3 class="ui inverted header">Non-Vulnerability Score</h3>
-    <h2>{{ result.nonvulnerable_score }}%</h2>
-    <h4 class="ui inverted header">Developer ID</h4>
-    <h2>{{ result.developer_id }}</h2>
-    <a class="btn btn-primary text-center" href="/">
-      Check Another <i class="left arrow icon"></i>
-    </a>
-  </div>
+content %}
+<div class="container">
+  <h4 class="ui inverted header">Developer ID</h4>
+  <h3>{{ result.developer_id }}</h3>
+  <br><br>
+  <h2>SCVDP ML Non-Vulnerability Result</h2>
+  <!-- {% if result.is_vulnerable %}
+  <img src="/images/vulnerable-dark.gif" alt="" style="max-width: 240px" class="my-5" />
+  {% else %}
+  <img src="/images/safe-dark.gif" alt="" style="max-width: 240px" class="my-5" />
+  {% endif %} -->
+
+  <section class="d-flex justify-content-center">
+    <table class="table table-bordered table-dark mt-4 w-auto">
+      <thead>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>Non-Vulnerability Score</td>
+          <td>{{ result.nonvulnerable_score }}%</td>
+        </tr>
+        <tr>
+          <td>Predicted Timestamp</td>
+          <td>{{ nptimestamp }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <!-- <h3 class="ui inverted header">Non-Vulnerability Score</h3>
+  <h2>{{ result.nonvulnerable_score }}%</h2> -->
+  <br><br>
+  <a class="btn btn-primary text-center" href="/">
+    Check Another <i class="left arrow icon"></i>
+  </a>
+</div>
 {% endblock %}

@@ -28,11 +28,11 @@
   <!--macro function-->
   {% macro score_color(score) %}
   {% if score >= 60 %}
-  badge badge-success
+  text-success
   {% elif score >= 30 %}
-  badge badge-warning
+  text-warning
   {% else %}
-  badge badge-danger
+  text-danger
   {% endif %}
   {% endmacro %}
 

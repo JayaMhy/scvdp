@@ -76,7 +76,10 @@ exports.postUpload = async function (req, res) {
 
 exports.getResult = function (req, res) {
   const result = req.session.result;
-  res.render("result.html", { result });
+  const ptimestamp = result.ptimestamp;
+  console.log("Hiiiiiiiiiiiiiiiiiii", ptimestamp);
+  const nptimestamp = new Date(ptimestamp * 1000).toLocaleString();
+  res.render("result.html", { result, nptimestamp });
 };
 
 //rough

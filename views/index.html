@@ -2,24 +2,20 @@
 <div class="container">
   <h1 class="text-center">Vulnerability Checker</h1>
   <h5 class="text-center my-5">
-    Source Code Vulnerability Detection and Prevention using Deep Learning and
-    Blockchain
+    Source Code Vulnerability Detection and Prevention using Machine Learning and
+    Blockchain in Multi-Party Application Development
   </h5>
 
   {%if user %}
   <form action="/upload" method="POST" enctype="multipart/form-data">
     <div class="text-center">
-      <label for="dev_id"><h3>Developer ID:</h3></label>
+      <label for="dev_id">
+        <h3>Developer ID:</h3>
+      </label>
     </div>
     <div class="d-flex align-items-center justify-content-center mb-5">
-      <input
-        type="text"
-        name="dev_id"
-        class="form-control"
-        style="max-width: 300px"
-        value="{{user.user_id}}"
-        readonly
-      />
+      <input type="text" name="dev_id" class="form-control" style="max-width: 300px" value="{{user.user_id}}"
+        readonly />
     </div>
 
     <div class="d-flex align-items-center justify-content-center">
@@ -27,11 +23,7 @@
         <input type="file" name="file" class="form-control" />
       </div>
       <div>
-        <button
-          class="btn btn-primary"
-          type="submit"
-          onclick="this.classList.add('loading')"
-        >
+        <button class="btn btn-primary" type="submit" onclick="this.classList.add('loading')">
           Check Source Code<i class="up arrow icon ml3"></i>
         </button>
       </div>
