@@ -3,16 +3,23 @@
 {% block
 content %}
 <div class="container">
-  <h4 class="ui inverted header">Developer ID</h4>
-  <h3>{{ result.developer_id }}</h3>
-  <br><br>
-  <h2>SCVDP ML Non-Vulnerability Result</h2>
-  <!-- {% if result.is_vulnerable %}
-  <img src="/images/vulnerable-dark.gif" alt="" style="max-width: 240px" class="my-5" />
-  {% else %}
-  <img src="/images/safe-dark.gif" alt="" style="max-width: 240px" class="my-5" />
-  {% endif %} -->
 
+  <span class="ui inverted header h4">Developer ID : </span>
+  <span class="h4">{{ result.developer_id }}</span>
+  <br><br>
+
+  <!-- <h4 class="ui inverted header">Developer ID</h4>
+  <h4>{{ result.developer_id }}</h4> -->
+  <h3>The File is {{score_text(result.nonvulnerable_score)}}</h3>
+  {% if result.nonvulnerable_score >= 60 %}
+  <img src="/images/safe.gif" alt="" style="max-width: 240px" class="my-4" />
+  {% elseif result.nonvulnerable_score >= 30 %}
+  <img src="/images/moderately_safe.gif" alt="" style="max-width: 240px" class="my-4" />
+  {% else %}
+  <img src="/images/vulnerable.gif" alt="" style="max-width: 240px" class="my-4" />
+  {% endif %}
+
+  <h4>Non-Vulnerability Result</h4>
   <section class="d-flex justify-content-center">
     <table class="table table-bordered table-dark mt-4 w-auto">
       <thead>
@@ -24,7 +31,7 @@ content %}
           <td>{{ result.nonvulnerable_score }}%</td>
         </tr>
         <tr>
-          <td>Predicted Timestamp</td>
+          <td>Prediction Timestamp</td>
           <td>{{ nptimestamp }}</td>
         </tr>
       </tbody>
@@ -32,7 +39,7 @@ content %}
   </section>
   <!-- <h3 class="ui inverted header">Non-Vulnerability Score</h3>
   <h2>{{ result.nonvulnerable_score }}%</h2> -->
-  <br><br>
+  <br>
   <a class="btn btn-primary text-center" href="/">
     Check Another <i class="left arrow icon"></i>
   </a>
