@@ -45,5 +45,5 @@ To start IPFS
 ipfs daemon
 ```
 
-##### Acknowledgments
-We would like to thank Daniel Lin for making [function Level vulnerability detection](https://github.com/DanielLin1986/Function-level-Vulnerability-Detection) available.
+### Acknowledgments
+We would like to thank Daniel Lin for making [function level vulnerability detection](https://github.com/DanielLin1986/Function-level-Vulnerability-Detection) available.
