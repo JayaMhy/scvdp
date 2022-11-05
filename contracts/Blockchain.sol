@@ -3,7 +3,14 @@ pragma solidity ^0.8.14;
 
 // smart contract starts here
 contract Blockchain {
-    struct Developer {
+    enum ROLES {
+        DEVELOPER,
+        LEADDEVELOPER,
+        BLOCKCHAINADMIN
+    }
+
+    struct User {
+        uint256 role_id;
         uint256 id;
         string name;
         string date_of_joining;
@@ -21,7 +28,6 @@ contract Blockchain {
         string developer_id;
     }
 
-    // This is the finally written on 21 June, 2022
     struct ReviewResult {
         uint256 serial_no;
         uint256 ml_serial_no; // ML Serial Number form the ML result struct
@@ -34,8 +40,8 @@ contract Blockchain {
     uint256 total_ml_result_count = 0;
     uint256 total_review_result_count = 0;
 
-    mapping(uint256 => Developer) developers;
-    mapping(uint256 => Developer) lead_developers;
+    mapping(uint256 => User) developers;
+    mapping(uint256 => User) lead_developers;
     mapping(uint256 => MlResult) ml_results;
     mapping(uint256 => ReviewResult) reviewed;
 
@@ -46,7 +52,12 @@ contract Blockchain {
         string memory name,
         string memory date_of_joining
     ) public {
-        developers[blockchain_address] = Developer(id, name, date_of_joining);
+        developers[blockchain_address] = User(
+            uint256(ROLES.DEVELOPER), // ROLE ID = 1
+            id,
+            name,
+            date_of_joining
+        );
     }
 
     // get Developers
@@ -59,7 +70,7 @@ contract Blockchain {
             string memory
         )
     {
-        Developer memory developer = developers[blockchain_address];
+        User memory developer = developers[blockchain_address];
         return (developer.id, developer.name, developer.date_of_joining);
     }
 
@@ -70,7 +81,8 @@ contract Blockchain {
         string memory name,
         string memory date_of_joining
     ) public {
-        lead_developers[blockchain_address] = Developer(
+        lead_developers[blockchain_address] = User(
+            uint256(ROLES.LEADDEVELOPER), // ROLE ID = 2
             id,
             name,
             date_of_joining
@@ -87,7 +99,7 @@ contract Blockchain {
             string memory
         )
     {
-        Developer memory ld = lead_developers[blockchain_address];
+        User memory ld = lead_developers[blockchain_address];
         return (ld.id, ld.name, ld.date_of_joining);
     }
 

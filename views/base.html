@@ -13,7 +13,14 @@
     rel="stylesheet" />
 
   {% include "includes/head.html" %}
+  <!-- Custom fonts for this template-->
 
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+
+  <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
   <!--macro function-->
   {% macro score_text(score) %}
   {% if score >= 60 %}
@@ -42,8 +49,8 @@
 <body>
   {% include "includes/navbar.html" %}
 
-  <div class="jumbotron jumbotron-fluid bg-dark text-white d-flex align-items-center justify-content-center text-center"
-    style="min-height: 100%">
+  <div class="jumbotron jumbotron-fluid bg-light text-dark d-flex align-items-center justify-content-center text-center"
+    style="min-height: calc(100vh)">
     <div class="container">{% block content %} {% endblock %}</div>
   </div>
   {% include "includes/footer.html" %}

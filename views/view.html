@@ -28,7 +28,7 @@ Lead
 </div>
 <!-- END MODAL -->
 <div>
-  <h3 class="mb-3" style="color: rgb(167, 227, 242)">Results</h3>
+  <h2 class="mb-3" style="color: rgb(1, 67, 84)">Results</h2>
   <div class="container d-flex flex-column" style="gap: 30px">
     <section>
       <h5>Developer Information</h5>
@@ -108,11 +108,11 @@ Lead
           <div class="col-sm my-5">
             <div class="p-2 bd-highlight h3 mt-2">
               <span class="mr-2">Rating : </span>
-              <span class="{{ score_color(result.nonvulnerable_score) }}">
+              <span class="{{ score_color(result.nonvulnerable_score) }} text-uppercase">
                 {{score_text(result.nonvulnerable_score)}}</span>
             </div>
           </div>
-          <div class="col-sm">
+          <!-- <div class="col-sm">
             <div class="d-flex flex-column bd-highlight align-items-start my-4">
               <table class="table table-sm table-bordered table-dark" style="font-size: 12px">
                 <thead>
@@ -123,24 +123,22 @@ Lead
                 </thead>
                 <tbody>
                   <tr>
-                    <!-- <th scope="row">Safe</th> -->
+                   
                     <td>Safe</td>
                     <td>60 to 100</td>
                   </tr>
                   <tr>
-                    <!-- <th scope="row">Moderately safe</th> -->
                     <td>Moderately Safe</td>
                     <td>30 to 60</td>
                   </tr>
                   <tr>
-                    <!-- <th scope="row">Unsafe</th> -->
                     <td>Unsafe</td>
                     <td>0 to 30</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -159,8 +157,7 @@ Lead
                   {% if filehash != '' %}
                   {{ filehash }}
                   {% else %}
-                  Not added to
-                  ipfs. Click accept button.
+                  Not added to ipfs. Click accept button.
                   {% endif %}
                 </span>
               </div>

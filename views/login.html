@@ -1,10 +1,18 @@
 {% extends 'base.html' %} {% block content %}
-<form action="/login" method="post">
-  <label for="">User ID</label>
-  <input type="text" class="form-control" name="user_id" />
-  <label for="">Password</label>
-  <input type="password" class="form-control" name="password" />
-  <button class="btn btn-primary" type="submit">Login</button>
-</form>
+
+<h3 class="text-uppercase">Login to your account</h3>
+
+<div class="d-flex align-items-center justify-content-center container" style="max-width: 600px;">
+  <div class=" shadow bg-white rounded  py-4 px-3" style="width:100%">
+    <form action="/login" method="post" style="display: grid; gap: 10px;">
+      <label for="">User ID</label>
+      <input type="text" class="form-control" name="user_id" />
+      <label for="">Password</label>
+      <input type="password" class="form-control" name="password" />
+      <button class="btn btn-primary mt-4" type="submit">Login</button>
+    </form>
+  </div>
+
+</div>
 
 {% endblock %}
