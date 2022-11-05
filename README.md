@@ -4,7 +4,7 @@ AI and Blockchain Based Source Code Vulnerability Detection and Prevention Syste
 
 Authors: Panchanan Nath, Jaya Rani Mushahary, Ujjal Roy, Maharaj Brahma and Pranav Kumar Singh
 
-This code is for the paper titled **AI and Blockchain Based Source Code Vulnerability Detection and Prevention System for Multi Party Software Development** submitted to Journal of Computer and Electrical Engineering.
+This code is for the paper titled **AI and Blockchain Based Source Code Vulnerability Detection and Prevention System for Multi Party Software Development** submitted to Journal of Computers and Electrical Engineering.
 
 > Paper is currently under review
 
