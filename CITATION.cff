@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Nath"
+  given-names: "Panchanan"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Mushahary"
+  given-names: "Jaya"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Roy"
+  given-names: "Ujjal"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Brahma"
+  given-names: "Maharaj"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Kumar Singh"
+  given-names: "Pranav"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "AI and Blockchain-based source code vulnerability detection and prevention system for multiparty software development"
+version: 2.0.4
+doi: https://doi.org/10.1016/j.compeleceng.2023.108607
+date-released: 2023-01-24
+url: "https://github.com/JayaMhy/scvdp/"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Nath"
+    given-names: "Panchanan"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Mushahary"
+    given-names: "Jaya"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Roy"
+    given-names: "Ujjal"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Brahma"
+    given-names: "Maharaj"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Kumar Singh"
+    given-names: "Pranav"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  doi: "10.1016/j.compeleceng.2023.108607"
+  journal: "Journal of Computers and Electrical Engineering"
+  month: 1
+  start: 1 # First page number
+  end: 15 # Last page number
+  title: "AI and Blockchain-based source code vulnerability detection and prevention system for multiparty software development"
+  volume: 106
+  year: 2023
